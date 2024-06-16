@@ -22,9 +22,11 @@ export default class Loan {
       const arr = [];
       let valueInstallment = (this.value / numberOfInstallments);
       valueInstallment += valueInstallment * Loan.get();
+      let dueDate = new Date();
 
       for (let i = 0; i < numberOfInstallments; i++) {
-         const installment = new Installments(valueInstallment, i);
+         dueDate.setMonth()
+         const installment = new Installments(valueInstallment, i, );
          arr.push(installment);
       }
 
