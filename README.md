@@ -1,1 +1,1 @@
-# Classes-for-a-digital-bank
+# Classes for a digital bank
