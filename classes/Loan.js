@@ -1,3 +1,4 @@
+import FormatDate from "../util/FormatDate.js";
 import Installments from "./Installments.js";
 
 export default class Loan {
@@ -25,8 +26,8 @@ export default class Loan {
       let dueDate = new Date();
 
       for (let i = 0; i < numberOfInstallments; i++) {
-         dueDate.setMonth()
-         const installment = new Installments(valueInstallment, i, );
+         dueDate = FormatDate.addDays(dueDate);
+         const installment = new Installments(valueInstallment, i + 1, dueDate);
          arr.push(installment);
       }
 

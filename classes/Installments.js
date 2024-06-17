@@ -7,4 +7,8 @@ export default class Installments {
       this.status = false;
    }
 
+   updateStatus() {
+      this.status = true;
+   }
+
 }
