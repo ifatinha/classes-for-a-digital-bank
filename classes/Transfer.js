@@ -1,10 +1,10 @@
 export default class Transfer {
 
-   constructor(value, userAccountDeposit, userAccountTransfer) {
+   constructor(value, clientSend, clientReceives) {
       this.value = value;
-      this.dateTransfer = new Date();
-      this.userAccountDeposit = userAccountDeposit;
-      this.userAccountTransfer = userAccountTransfer;
+      this.date = new Date();
+      this.clientSend = clientSend;
+      this.clientReceives = clientReceives;
    }
 
 }

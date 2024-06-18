@@ -3,7 +3,11 @@ export default class FormatDate {
    pattern = {
       month: "numeric",
       year: "2-digit",
-      day: "numeric"
+      day: "numeric",
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+      hour12: false
    }
 
    static formatDate(date) {

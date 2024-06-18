@@ -7,7 +7,7 @@ export default class Loan {
 
    constructor(value, numberOfInstallments) {
       this.value = value;
-      this.dateLoan = new Date();
+      this.date = new Date();
       this.installments = this.calculateInstallments(numberOfInstallments);
    }
 
