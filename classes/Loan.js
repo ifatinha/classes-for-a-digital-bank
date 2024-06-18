@@ -21,13 +21,13 @@ export default class Loan {
 
    calculateInstallments(numberOfInstallments) {
       const arr = [];
-      let valueInstallment = (this.value / numberOfInstallments);
-      valueInstallment += valueInstallment * Loan.get();
+      let installmentValue = (this.value / numberOfInstallments);
+      installmentValue += installmentValue * Loan.get();
       let dueDate = new Date();
 
       for (let i = 0; i < numberOfInstallments; i++) {
          dueDate = FormatDate.addDays(dueDate);
-         const installment = new Installments(valueInstallment, i + 1, dueDate);
+         const installment = new Installments(installmentValue, i + 1, dueDate);
          arr.push(installment);
       }
 
