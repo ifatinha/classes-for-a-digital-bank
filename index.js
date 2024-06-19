@@ -1,33 +1,26 @@
+import App from "./app/App.js";
 import Account from "./classes/Account.js";
-import Deposit from "./classes/Deposit.js";
-import Loan from "./classes/Loan.js";
-import Transfer from "./classes/Transfer.js";
 
-const cl1 = {
-   code: 1,
-   name: "John Doe"
-}
+const account1 = new Account();
+const account2 = new Account();
 
-const cl2 = {
-   code: 2,
-   name: "Sally River"
-}
+App.createClient(1, "John Doe");
+App.createClient(2, 'John Smith');
+App.createClient(3, "Mary Johnson");
+App.createClient(4, "Peter Brown");
+App.createClient(5, "Anna White");
+App.createClient(6, 'Charles Green');
 
-const account = new Account(cl1);
+const clients = App.getClients();
 
-const dep1 = new Deposit(1500);
-const dep2 = new Deposit(2000);
-account.deposit(dep1);
-account.deposit(dep2);
+App.deposit(clients[0], 1500);
+App.deposit(clients[0], 1500);
+App.deposit(clients[0], 1500);
+App.deposit(clients[0], 1500);
 
-const loan1 = new Loan(2500, 5);
-const loan2 = new Loan(1000, 1);
-account.loan(loan1);
-account.loan(loan2);
+App.loan(clients[0], 500, 5);
+App.loan(clients[0], 750, 1);
+App.loan(clients[0], 1250, 2);
 
-const transfer = new Transfer(100, cl1, cl2);
-const transfer2 = new Transfer(50, cl1, cl1);
-account.transfer(transfer);
-account.transfer(transfer2);
+clients[0].account.show(clients[0]);
 
-account.show();

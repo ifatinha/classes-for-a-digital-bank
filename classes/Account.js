@@ -1,11 +1,12 @@
-import FormatDate from "../util/FormatDate.js";
+import Deposit from "./Deposit.js";
+import Loan from "./Loan.js";
+import Transfer from "./Transfer.js";
 
 export default class Account {
 
    #balance = 0;
 
-   constructor(client) {
-      this.client = client;
+   constructor() {
       this.deposits = [];
       this.loans = [];
       this.transfers = [];
@@ -15,15 +16,17 @@ export default class Account {
       return this.#balance;
    }
 
-   deposit(deposit) {
-      if (deposit.value > 0) {
+   deposit(value) {
+      if (value > 0) {
+         const deposit = new Deposit(value);
          this.#balance += deposit.value;
          this.deposits.push(deposit);
       }
    }
 
-   loan(loan) {
-      if (loan.value > 0) {
+   loan(value, numberOfInstallments) {
+      if (value > 0) {
+         const loan = new Loan(value, numberOfInstallments);
          this.#balance += loan.value;
          this.loans.push(loan);
       }
@@ -41,13 +44,18 @@ export default class Account {
       }
    }
 
-   show() {
+   show(client) {
       console.log("######### Extrato #########");
-      console.log(`Cliente: ${this.client.code} - ${this.client.name}`);
+      console.log(`Cliente: ${client.code} - ${client.name}`);
       console.log(`Saldo em Conta: ${this.getBalance()}`);
 
+      console.log("\nDepósitos:");
       console.table(this.deposits);
+
+      console.log("\nEmpréstimos:");
       console.table(this.loans);
+
+      console.log("\nTransferências:")
       console.table(this.transfers);
 
    }

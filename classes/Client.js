@@ -1,10 +1,10 @@
-export default class Client{
+import Account from "./Account.js";
 
-   constructor(code, name, account){
+export default class Client {
+
+   constructor(code, name) {
       this.code = code;
       this.name = name;
-      this.account = account;
+      this.account = new Account();
    }
-
-   
 }
