@@ -41,9 +41,9 @@ export default class Account {
       }
    }
 
-   show(client) {
+   show() {
       console.log("######### Extrato #########");
-      console.log(`Cliente: ${client.code} - ${client.name}`);
+      console.log(`Cliente: ${this.owner.code} - ${this.owner.name}`);
       console.log(`Saldo em Conta: ${this.balance()}.00 R$`);
 
       console.log("\nDepósitos:");

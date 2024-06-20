@@ -5,7 +5,7 @@ export default class App {
 
    static #clients = [];
 
-   static getClients() {
+   static get clients() {
       return this.#clients;
    }
 
@@ -22,16 +22,5 @@ export default class App {
       }
    }
 
-   static deposit(client, value) {
-      client.account.deposit(value);
-   }
-
-   static loan(client, value, numberOfInstallments) {
-      client.account.loan(value, numberOfInstallments);
-   }
-
-   static transfer(value, clientSend, clientReceives) {
-      const transfer = new Transfer(value, clientSend, clientReceives);
-      clientReceives.account.transfer(transfer);
-   }
+   
 }
