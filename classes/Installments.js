@@ -4,11 +4,11 @@ export default class Installments {
       this.value = value;
       this.number = number;
       this.dueDate = dueDate;
-      this.status = false;
+      this.paid = false;
    }
 
-   updateStatus() {
-      this.status = true;
+   updatePaid() {
+      this.paid = true;
    }
 
 }

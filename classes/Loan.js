@@ -3,31 +3,29 @@ import Installments from "./Installments.js";
 
 export default class Loan {
 
-   static #interestRate = 0.01;
+   static #fee = 1.05;
 
    constructor(value, numberOfInstallments) {
       this.value = value;
       this.date = new Date();
-      this.installments = this.calculateInstallments(numberOfInstallments);
+      this.installments = App.calculateInstallments(numberOfInstallments);
    }
 
-   static get() {
-      return this.#interestRate;
+   static get fee() {
+      return this.#fee;
    }
 
-   static set(interestRate) {
-      this.#interestRate = interestRate / 100;
+   static set fee(newFeePorcentage) {
+      Loan.#fee = (1 + newFeePorcentage) / 100;
    }
 
-   calculateInstallments(numberOfInstallments) {
+   static calculateInstallments(numberOfInstallments) {
       const arr = [];
-      let installmentValue = (this.value / numberOfInstallments);
-      installmentValue += installmentValue * Loan.get();
-      let dueDate = new Date();
+      let installmentValue = ((this.value * Loan.get()) / numberOfInstallments);
 
-      for (let i = 0; i < numberOfInstallments; i++) {
-         dueDate = FormatDate.addDays(dueDate);
-         const installment = new Installments(installmentValue, i + 1, dueDate);
+      for (let i = 1; i <= numberOfInstallments; i++) {
+         dueDate = FormatDate.addDays(new Date());
+         const installment = new Installments(installmentValue, i, dueDate);
          arr.push(installment);
       }
 

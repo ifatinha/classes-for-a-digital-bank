@@ -1,10 +1,10 @@
 export default class Transfer {
 
-   constructor(value, clientSend, clientReceives) {
+   constructor(value, fromClient, toClient) {
       this.value = value;
       this.date = new Date();
-      this.clientSend = clientSend;
-      this.clientReceives = clientReceives;
+      this.fromClient = fromClient;
+      this.toClient = toClient;
    }
 
 }

@@ -2,9 +2,9 @@ import Account from "./Account.js";
 
 export default class Client {
 
-   constructor(code, name) {
+   constructor(code, fullName) {
       this.code = code;
-      this.name = name;
-      this.account = new Account();
+      this.fullName = fullName;
+      this.account = new Account(this);
    }
 }

@@ -4,40 +4,37 @@ import Transfer from "./Transfer.js";
 
 export default class Account {
 
-   #balance = 0;
+   #balance;
 
-   constructor() {
+   constructor(client) {
+      this.owner = client;
+      this.#balance = 0;
       this.deposits = [];
       this.loans = [];
       this.transfers = [];
    }
 
-   getBalance() {
+   get balance() {
       return this.#balance;
    }
 
-   deposit(value) {
-      if (value > 0) {
-         const deposit = new Deposit(value);
-         this.#balance += deposit.value;
-         this.deposits.push(deposit);
-      }
+   addDeposit(deposit) {
+      this.#balance += deposit.value;
+      this.deposits.push(deposit);
    }
 
-   loan(value, numberOfInstallments) {
-      if (value > 0) {
-         const loan = new Loan(value, numberOfInstallments);
-         this.#balance += loan.value;
-         this.loans.push(loan);
-      }
+   addLoan(loan) {
+      this.#balance += loan.value;
+      this.loans.push(loan);
    }
 
-   transfer(transfer) {
-      if (transfer.clientReceives.code === this.client.code) {
+   addTransfer(transfer) {
+
+      if (transfer.toClient.code === this.owner.code) {
          this.#balance += transfer.value;
          this.transfers.push(transfer);
-      } else {
-         if (transfer.value <= this.getBalance()) {
+      } else if (transfer.fromClient.code === this.owner.code) {
+         if (transfer.value <= this.owner.account.balance()) {
             this.#balance -= transfer.value;
             this.transfers.push(transfer);
          }
@@ -47,7 +44,7 @@ export default class Account {
    show(client) {
       console.log("######### Extrato #########");
       console.log(`Cliente: ${client.code} - ${client.name}`);
-      console.log(`Saldo em Conta: ${this.getBalance()}`);
+      console.log(`Saldo em Conta: ${this.balance()}.00 R$`);
 
       console.log("\nDepósitos:");
       console.table(this.deposits);

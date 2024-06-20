@@ -1,4 +1,5 @@
 import Client from "../classes/Client.js";
+import Transfer from "../classes/Transfer.js";
 
 export default class App {
 
@@ -27,5 +28,10 @@ export default class App {
 
    static loan(client, value, numberOfInstallments) {
       client.account.loan(value, numberOfInstallments);
+   }
+
+   static transfer(value, clientSend, clientReceives) {
+      const transfer = new Transfer(value, clientSend, clientReceives);
+      clientReceives.account.transfer(transfer);
    }
 }
