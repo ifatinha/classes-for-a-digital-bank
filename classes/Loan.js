@@ -8,7 +8,7 @@ export default class Loan {
    constructor(value, numberOfInstallments) {
       this.value = value;
       this.date = new Date();
-      this.installments = App.calculateInstallments(numberOfInstallments);
+      this.installments = this.calculateInstallments(numberOfInstallments);
    }
 
    static get fee() {
@@ -16,15 +16,15 @@ export default class Loan {
    }
 
    static set fee(newFeePorcentage) {
-      Loan.#fee = (1 + newFeePorcentage) / 100;
+      Loan.#fee = 1 + (newFeePorcentage / 100);
    }
 
-   static calculateInstallments(numberOfInstallments) {
+   calculateInstallments(numberOfInstallments) {
       const arr = [];
-      let installmentValue = ((this.value * Loan.get()) / numberOfInstallments);
+      let installmentValue = ((this.value * Loan.fee) / numberOfInstallments);
 
       for (let i = 1; i <= numberOfInstallments; i++) {
-         dueDate = FormatDate.addDays(new Date());
+         const dueDate = FormatDate.addDays(new Date());
          const installment = new Installments(installmentValue, i, dueDate);
          arr.push(installment);
       }

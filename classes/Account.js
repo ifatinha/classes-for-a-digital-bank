@@ -34,7 +34,7 @@ export default class Account {
          this.#balance += transfer.value;
          this.transfers.push(transfer);
       } else if (transfer.fromClient.code === this.owner.code) {
-         if (transfer.value <= this.owner.account.balance()) {
+         if (transfer.value <= this.owner.account.balance) {
             this.#balance -= transfer.value;
             this.transfers.push(transfer);
          }
@@ -43,8 +43,8 @@ export default class Account {
 
    show() {
       console.log("######### Extrato #########");
-      console.log(`Cliente: ${this.owner.code} - ${this.owner.name}`);
-      console.log(`Saldo em Conta: ${this.balance()}.00 R$`);
+      console.log(`Cliente: ${this.owner.code} - ${this.owner.fullName}`);
+      console.log(`Saldo em Conta: ${this.#balance}.00R$`);
 
       console.log("\nDepósitos:");
       console.table(this.deposits);
