@@ -22,5 +22,8 @@ export default class App {
       }
    }
 
+   static deposit(value, clientCode){
+      
+   }
    
 }
